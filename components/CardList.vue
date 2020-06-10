@@ -44,17 +44,17 @@
       </svg>
     </div>
 
-    <!-- <MODALADD ></MODALADD> -->
+    <MODALADD ></MODALADD>
 
   </div>
 </template>
 
 <script>
-// import MODALADD from './ModalAdd'
+import MODALADD from './ModalAdd'
 export default {
-//   components:{
-//     MODALADD
-//   },
+  components:{
+    MODALADD
+  },
   methods: {
     showClient(){
       console.log('show client')

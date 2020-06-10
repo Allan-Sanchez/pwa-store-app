@@ -15,18 +15,19 @@
 
     <div class="mx-6 text-font">
       <h3 class="mb-3">Lista de Personas</h3>
-      <!-- <CARDLIST></CARDLIST> -->
+      <CARDLIST></CARDLIST>
     </div>
 
   </section>
 </template>
 
 <script>
+import CARDLIST from '../components/CardList'
 
 export default {
-  // components: {
-  //   Logo
-  // }
+  components: {
+    CARDLIST
+  }
 }
 </script>
 

@@ -16,7 +16,36 @@ module.exports = {
       'nuxt.config.js'
     ]
   },
-  theme: {},
+  theme: {
+    minWidth: {
+         '0': '0',
+         '1/4': '25%',
+         '1/2': '50%',
+         '3/5': '60%',
+         '3/4': '75%',
+         'full': '100%',
+    },
+  
+    extend:{
+      width: {
+        '14':'50px'
+      },
+      borderRadius:{
+        'rounded-0':'0',
+        'rounded-1':'10px',
+        
+        'rounded-3':'30px',
+        'rounded-4':'40px',
+        'rounded-5':'50px',
+        'rounded-6':'60px',
+        'rounded-7':'70px',
+        'rounded-8':'80px',
+        'rounded-9':'90px',
+        'rounded-10':'100px',
+      },
+      
+    }
+  },
   variants: {},
   plugins: []
 }

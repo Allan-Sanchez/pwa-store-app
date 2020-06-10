@@ -58,12 +58,12 @@ export default {
   methods: {
     showClient(){
       console.log('show client')
-    //   this.$router.push({
-    //       name: 'ClientPage',
-    //       params: {
-    //         // tag: this.searchQuery
-    //       }
-    //     })
+      this.$router.push({
+          name: 'ClientPage',
+          params: {
+            // tag: this.searchQuery
+          }
+        })
     }
   },
 }

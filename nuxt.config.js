@@ -42,8 +42,31 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/pwa',
+    // [
+      '@nuxtjs/pwa',
+      '@nuxtjs/firebase',
+      
+    // ]
   ],
+
+   //Nuxt-Fire Module Options
+   firebase: {
+    config: {
+      apiKey: "AIzaSyBUE57LAH2Ni5Xp7FRHECxkp-b7ECRlox4",
+      authDomain: "dbdebt-d1da3.firebaseapp.com",
+      databaseURL: "https://dbdebt-d1da3.firebaseio.com",
+      projectId: "dbdebt-d1da3",
+      storageBucket: "dbdebt-d1da3.appspot.com",
+      messagingSenderId: "848342549212",
+      appId: "1:848342549212:web:091cd0b2a2109da9c92a19",
+      // measurementId: "G-XT6PVC1D4X",
+      // fcmPublicVapidKey:
+      //   "BL_xoiuOe5vbb2vJkCNnuswn03NwCsyCkJUgRbuQA5tpg7J4E4z50MO8b-wrrad6fcysYAaFjHqU7D9o0oCWL8w"
+    },
+    services: {
+      firestore: true
+    }
+  },
   /*
   ** Build configuration
   */

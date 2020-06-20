@@ -340,23 +340,9 @@
       </div>
     </div>
 
-    
+    <ADDCLIENT></ADDCLIENT>
 
-    <!-- btn -->
-     <div class="flex justify-center pt-2 mt-4 text-font-card mb-5">
-            <button
-              class="btn-icon-card px-4 bg-green-200  p-2 rounded-lg hover:bg-green-100  hover:text-gray-700 mr-2 flex items-center"
-            >
-              Deuda 
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="2em" height="2em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M5 11h14v2H5z" fill="#1DA849"/></svg>
-            </button>
-            <button
-              class="btn-icon-card modal-close px-4 bg-red-200 p-2 rounded-lg hover:text-gray-700 hover:bg-red-100 flex items-center"
-            >
-              Deuda
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="2em" height="2em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><defs/><path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z" fill="#FF1C1C"/><path d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z" fill="#FF1C1C"/></svg>
-            </button>
-          </div>
+    
   </section>
 </template>
 
@@ -396,3 +382,12 @@
   border-radius: 20px;
 }
 </style>
+
+<script>
+import ADDCLIENT from '../components/AddClient';
+export default {
+  components:{
+    ADDCLIENT
+  }
+}
+</script>

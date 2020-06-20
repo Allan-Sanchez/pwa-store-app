@@ -1,7 +1,7 @@
 <template>
- <section>
+  <section>
     <div class="w-full h-64 flex justify-center items-center">
-      <div class="flex justify-center flex-col w-full mx-12">
+      <div class="flex justify-center flex-col w-full mx-6">
         <h1 class="title text-center">UK</h1>
         <div class="relative">
           <input
@@ -15,20 +15,61 @@
 
     <div class="mx-6 text-font">
       <h3 class="mb-3">Lista de Personas</h3>
+      <!-- <button
+        @click="readFromFirestore()"
+        class="p-3 m-2 bg-blue-300 border rounded font-bold text-white"
+      >
+        test data
+      </button>
+      <button
+        @click="writeToFirestore()"
+        class="p-3 m-2 bg-red-300 border rounded font-bold text-white"
+      >
+        test data
+      </button> -->
       <CARDLIST></CARDLIST>
     </div>
-
   </section>
 </template>
 
 <script>
-import CARDLIST from '../components/CardList'
+import CARDLIST from "../components/CardList";
 
 export default {
   components: {
     CARDLIST
+  },
+  data() {
+    return {
+      dateMessage: ""
+    };
+  },
+  methods: {
+    async writeToFirestore() {
+      const messageRef = this.$fireStore.collection("message").doc("message");
+      try {
+        await messageRef.set({
+          message: "Nuxt-Fire with Firestore rocks!"
+        });
+      } catch (e) {
+        alert(e);
+        return;
+      }
+      alert("Success.");
+    },
+    async readFromFirestore() {
+      console.log(this.$fireStore);
+      const messageRef = this.$fireStore.collection("message").doc("message");
+      try {
+        const messageDoc = await messageRef.get();
+        alert(messageDoc.data().message);
+      } catch (e) {
+        alert(e);
+        return;
+      }
+    },
   }
-}
+};
 </script>
 
 <style>
@@ -43,18 +84,18 @@ export default {
 }
 
 .title {
-  font-family: 'Piedra', sans-serif;
-  font-size:64px;
+  font-family: "Piedra", sans-serif;
+  font-size: 64px;
   color: var(--color-text);
 }
 .text-font {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   color: var(--color-text);
 }
 .input-search {
   @apply border  py-2 px-4 block w-full appearance-none leading-normal;
-  font-family: 'Roboto';
-  border-radius:2rem;
+  font-family: "Roboto";
+  border-radius: 2rem;
   border-color: #e4e9f8;
   background: #f4f6fd;
 }
@@ -64,8 +105,7 @@ export default {
 .input-search::placeholder {
   color: var(--color-text);
 }
-.placeholder-input::placeholder{
-    color: var(--color-text);
-
+.placeholder-input::placeholder {
+  color: var(--color-text);
 }
 </style>

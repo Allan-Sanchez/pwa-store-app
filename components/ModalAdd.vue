@@ -14,7 +14,7 @@
       <div
         class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto"
       >
-        <div
+        <div @click="closeModal()"
           class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50"
         >
           <svg
@@ -71,7 +71,7 @@
 
 <script>
 export default {
-    name:"modalAdd",
+  name:"modalAdd",
   data() {
     return {
       modal: false

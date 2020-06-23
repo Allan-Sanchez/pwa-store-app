@@ -54,7 +54,7 @@
     </div>
 
     <div class="w-3/4 flex justify-center mx-auto text-font-card">
-      <div class=" w-48 mt-5 p-3 border p-1 bg-blue-100 rounded-2">
+      <div class="total-debt w-48 mt-5 p-3 border p-1 bg-blue-100 rounded-2">
         <p>Total Deuda <span class="font-bold">5,000.00</span></p>
       </div>
     </div>
@@ -380,6 +380,9 @@
 }
 .btn-icon-card{
   border-radius: 20px;
+}
+.total-debt{
+  border-radius: 15px;
 }
 </style>
 

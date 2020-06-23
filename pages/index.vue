@@ -58,7 +58,6 @@ export default {
       alert("Success.");
     },
     async readFromFirestore() {
-      console.log(this.$fireStore);
       const messageRef = this.$fireStore.collection("message").doc("message");
       try {
         const messageDoc = await messageRef.get();

@@ -14,7 +14,9 @@
     "@nuxtjs/firebase": "^6.0.1",
     "@nuxtjs/pwa": "^3.0.0-0",
     "firebase": "^7.15.4",
-    "nuxt": "^2.13.0"
+    "nuxt": "^2.13.0",
+    "timeago.js": "^4.0.2",
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
     "@babel/runtime-corejs3": "^7.10.3",

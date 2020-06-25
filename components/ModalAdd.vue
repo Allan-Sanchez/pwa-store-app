@@ -63,15 +63,6 @@
               placeholder="Escribe el nombre del cliente"
             />
           </div>
-          <div>
-            <label class="inline-flex items-center mt-3">
-                <input type="checkbox" class="form-checkbox h-5 w-5 text-orange-600" checked><span class="ml-2 text-gray-700">label</span>
-            </label>
-
-            <label class="inline-flex items-center mt-3">
-                <input type="checkbox" class="form-checkbox h-5 w-5 text-yellow-600" checked><span class="ml-2 text-gray-700">label</span>
-            </label>
-          </div>
 
           <p>Fecha de creacion</p>
           <div class="md:w-full">
@@ -83,6 +74,32 @@
               type="text"
               placeholder="08/06/2020"
             />
+          </div>
+
+          <div class="flex mt-5">
+            <div>
+              <label class="inline-flex items-center">
+                <input
+                  type="radio"
+                  class="form-radio text-indigo-600"
+                  name="radio-colors"
+                  value="hombre"
+                  checked v-model="gender"
+                />
+                <span class="ml-2">Hombre</span>
+              </label>
+            </div>
+            <div class="mx-auto">
+              <label class="inline-flex items-center">
+                <input
+                  type="radio"
+                  class="form-radio text-red-500"
+                  name="radio-colors"
+                  value="mujer" v-model="gender"
+                />
+                <span class="ml-2">Mujer</span>
+              </label>
+            </div>
           </div>
           <!--Footer-->
           <div class="flex justify-end pt-2 mt-4">
@@ -114,38 +131,40 @@ export default {
     return {
       modal: false,
       name: "",
-      date: ""
+      date: "",
+      gender:''
     };
-  },
-  mounted() {
-    let day = new Date().toLocaleString();
-    this.date = day;
   },
   methods: {
     closeModal() {
-      this.name = '';
+      this.name = "";
       this.modal = false;
     },
     openModal() {
+      let d = new Date();
+      let datestring = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate()  + " " +
+      d.getHours() + ":" + d.getMinutes();
+      this.date = datestring;
       this.modal = true;
     },
     async addClient() {
-      if (this.name != "" && this.date != "") {
-        const messageRef = this.$fireStore.collection("message");
+      if (this.name != "" && this.date != "" && this.gender != "") {
+        const messageRef = this.$fireStore.collection("clients");
         // const messageRef = this.$fireStore.collection("message").doc("clients");
         try {
           await messageRef.add({
-            client: this.name,
+            name: this.name,
+            gender: this.gender,
             date: this.date
           });
         } catch (e) {
-          alert(e);
+          console.log(e)
           return;
         }
-        alert("Success.");
+        // alert("Success.");
         this.closeModal();
+        this.$emit('alert-open');
       }
-      console.log("error esta vacio");
     }
   }
 };

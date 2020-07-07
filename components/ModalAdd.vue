@@ -155,7 +155,8 @@ export default {
           await messageRef.add({
             name: this.name,
             gender: this.gender,
-            date: this.date
+            date: this.date,
+            total:0
           });
         } catch (e) {
           console.log(e)

@@ -1,10 +1,10 @@
 <template>
   <section>
     <!-- btn -->
+    <!-- <h1>{{keyclient}}</h1> -->
     <div class="flex justify-center pt-2 mt-4 text-font-card mb-5">
       <button @click="openModalSubstract()"
-        class="btn-icon-card px-4 bg-green-200  p-2 rounded-lg hover:bg-green-100  hover:text-gray-700 mr-2 flex items-center"
-      >
+        class="btn-icon-card px-4 bg-green-200  p-2 rounded-lg hover:bg-green-100  hover:text-gray-700 mr-2 flex items-center">
         Deuda
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -20,9 +20,9 @@
           <path d="M5 11h14v2H5z" fill="#1DA849" />
         </svg>
       </button>
+
       <button @click="openModalPlus()"
-        class="btn-icon-card modal-close px-4 bg-red-200 p-2 rounded-lg hover:text-gray-700 hover:bg-red-100 flex items-center"
-      >
+        class="btn-icon-card modal-close px-4 bg-red-200 p-2 rounded-lg hover:text-gray-700 hover:bg-red-100 flex items-center">
         Deuda
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -63,8 +63,7 @@
         class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto"
       >
         <div @click="closeModal()"
-          class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50"
-        >
+          class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
           <svg
             class="fill-current text-white"
             xmlns="http://www.w3.org/2000/svg"
@@ -180,7 +179,13 @@
 
 <script>
 export default {
-  data() {
+  props : {
+    keyclient: {
+        type: String,
+        required: true
+    }
+},
+  data () {
     return {
       modal: false,
       substract : true,
@@ -190,15 +195,31 @@ export default {
       // plus:false,
     };
   },
+  mounted() {
+    // console.log(keyclient)
+    console.log(this.$props.keyclient);
+  },
   methods:{
     openModalSubstract(){
       this.modal = !this.modal;
       this.description = 'Abono';
     },
-    openModalPlus(){
+   async openModalPlus(){
       this.modal = !this.modal;
       this.description ='';
       this.substract = !this.substract;
+      // console.log(this.keyclient);
+      
+      // const messageRef = this.$fireStore.collection("clients").doc(this.keyclient).collection("history");
+      //   try {
+      //     await messageRef.add({
+      //      fecha:'hoy',
+      //      mensage:'test'
+      //     });
+      //   } catch (e) {
+      //     console.log(e)
+      //     return;
+      //   }
     },
     closeModal(){
       this.modal = false;

@@ -1,18 +1,18 @@
 <template>
   <section>
-    <div class="flex items-center flex-col card-image py-4 ">
-      <!-- <div> -->
-      <img src="../assets/img/boy.svg" class="w-24" alt="avatar image" />
+    <div v-for="(item, index) in dataClient" :key="index" class="flex items-center flex-col card-image py-4 ">
+      <!-- <div > -->
+      <img v-if="item.gender === 'hombre'" src="../assets/img/boy.svg" class="w-24" alt="avatar image" />
+      <img v-else src="../assets/img/girl.svg" class="w-24" alt="avatar image" />
       <!-- </div> -->
       <div class="text-center text-font-card text-lg mt-3">
-        <p>Allan Edrey Sanchez Rixtun</p>
-        <p class="mt-2">09/06/2020</p>
+        <p>{{ item.name }}</p>
+        <p class="mt-2">{{item.date}}</p>
       </div>
 
       <div class="flex w-11/12 justify-around absolute icon-content">
-        <button
-          class="btn-border-icon  bg-pink-500 text-white w-12 h-12   hover:bg-pink-400 border border-solid "
-        >
+        <button @click="deleteClient()"
+          class="btn-border-icon  bg-pink-500 text-white w-12 h-12   hover:bg-pink-400 border border-solid ">
           <div class="ml-2">
             <svg
               aria-hidden="true"
@@ -30,9 +30,9 @@
             </svg>
           </div>
         </button>
-        <button
-          class="btn-border-icon border border-solid modal-close bg-blue-500 w-12 h-12  hover:bg-blue-400 flex justify-center items-center"
-        >
+
+        <button @click="editClient()"
+          class="btn-border-icon border border-solid modal-close bg-blue-500 w-12 h-12  hover:bg-blue-400 flex justify-center items-center">
           <div class="ml-2">
             <svg
               aria-hidden="true"
@@ -55,300 +55,21 @@
 
     <div class="w-3/4 flex justify-center mx-auto text-font-card">
       <div class="total-debt w-48 mt-5 p-3 border p-1 bg-blue-100 rounded-2">
-        <p>Total Deuda <span class="font-bold">5,000.00</span></p>
+        <!-- <p>Total Deuda <span class="font-bold">Q {{ dataClient[0].total }}</span></p> -->
+        <p>Total Deuda <span class="font-bold">Q</span></p>
       </div>
     </div>
 
     <!-- table -->
-    <div class="inline-block min-w-full shadow overflow-hidden mt-5 text-font-card" >
-      <table class="min-w-3/4 leading-normal mx-auto  mb-5">
-        <thead>
-          <tr>
-            <th
-              class="px-5 py-3 border-b-2 border-gray-200 bg-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-            >
-              <svg
-                aria-hidden="true"
-                focusable="false"
-                width="2em"
-                height="2em"
-                style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
-                preserveAspectRatio="xMidYMid meet"
-                viewBox="0 0 1024 1024"
-              >
-                <path
-                  d="M880 305H624V192c0-17.7-14.3-32-32-32H184v-40c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v784c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V640h248v113c0 17.7 14.3 32 32 32h416c17.7 0 32-14.3 32-32V337c0-17.7-14.3-32-32-32z"
-                  fill="#A3AED3"
-                />
-              </svg>
-            </th>
-            <th
-              class="px-5 py-3 border-b-2 border-gray-200 bg-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider text-center"
-            >
-              Fecha
-            </th>
-            <th
-              class="px-5 py-3 border-b-2 border-gray-200 bg-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider text-center"
-            >
-              Cantidad
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td
-              class="px-5 py-2 border-b border-gray-200 bg-white text-sm bg-blue-100"
-            >
-              <!-- <p class="text-gray-900 whitespace-no-wrap">Admin</p> -->
-              <div class="green-circle flex justify-center items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  aria-hidden="true"
-                  focusable="false"
-                  width="0.75em"
-                  height="1em"
-                  style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
-                  preserveAspectRatio="xMidYMid meet"
-                  viewBox="0 0 12 16"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M12 11L6 5l-6 6h12z"
-                    fill="#1DA849"
-                  />
-                </svg>
-              </div>
-            </td>
-            <td
-              class="px-5 py-2 border-b border-gray-200 bg-white text-sm bg-blue-100"
-            >
-              <p class="text-gray-900 whitespace-no-wrap">
-                Jan 21, 2020
-              </p>
-            </td>
-            <td
-              class="px-5 py-2 border-b border-gray-200 bg-white text-sm bg-blue-100"
-            >
-              <!-- <span
-                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                        <span aria-hidden
-                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                        <span class="relative">Q 200.00</span>
-                                    </span> -->
-              <p class="text-gray-900 whitespace-no-wrap">
-                Q 200.00
-              </p>
-            </td>
-          </tr>
+    <TABLE ></TABLE>
 
-          <tr>
-            <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm">
-              <!-- <p class="text-gray-900 whitespace-no-wrap">Admin</p> -->
-              <div class="red-circle flex justify-center items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  aria-hidden="true"
-                  focusable="false"
-                  width="0.75em"
-                  height="1em"
-                  style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
-                  preserveAspectRatio="xMidYMid meet"
-                  viewBox="0 0 12 16"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M12 11L6 5l-6 6h12z"
-                    fill="#FF1C1C"
-                  />
-                </svg>
-              </div>
-            </td>
-            <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm">
-              <p class="text-gray-900 whitespace-no-wrap">
-                Jan 21, 2020
-              </p>
-            </td>
-            <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm">
-              <!-- <span
-                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                        <span aria-hidden
-                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                        <span class="relative">Q 200.00</span>
-                                    </span> -->
-              <p class="text-gray-900 whitespace-no-wrap">
-                Q 200.00
-              </p>
-            </td>
-          </tr>
-
-          <tr>
-            <td
-              class="px-5 py-2 border-b border-gray-200 bg-white text-sm bg-blue-100"
-            >
-              <!-- <p class="text-gray-900 whitespace-no-wrap">Admin</p> -->
-              <div class="green-circle flex justify-center items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  aria-hidden="true"
-                  focusable="false"
-                  width="0.75em"
-                  height="1em"
-                  style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
-                  preserveAspectRatio="xMidYMid meet"
-                  viewBox="0 0 12 16"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M12 11L6 5l-6 6h12z"
-                    fill="#1DA849"
-                  />
-                </svg>
-              </div>
-            </td>
-            <td
-              class="px-5 py-2 border-b border-gray-200 bg-white text-sm bg-blue-100"
-            >
-              <p class="text-gray-900 whitespace-no-wrap">
-                Jan 21, 2020
-              </p>
-            </td>
-            <td
-              class="px-5 py-2 border-b border-gray-200 bg-white text-sm bg-blue-100"
-            >
-              <!-- <span
-                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                        <span aria-hidden
-                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                        <span class="relative">Q 200.00</span>
-                                    </span> -->
-              <p class="text-gray-900 whitespace-no-wrap">
-                Q 200.00
-              </p>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm">
-              <!-- <p class="text-gray-900 whitespace-no-wrap">Admin</p> -->
-              <div class="red-circle flex justify-center items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  aria-hidden="true"
-                  focusable="false"
-                  width="0.75em"
-                  height="1em"
-                  style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
-                  preserveAspectRatio="xMidYMid meet"
-                  viewBox="0 0 12 16"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M12 11L6 5l-6 6h12z"
-                    fill="#FF1C1C"
-                  />
-                </svg>
-              </div>
-            </td>
-            <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm">
-              <p class="text-gray-900 whitespace-no-wrap">
-                Jan 21, 2020
-              </p>
-            </td>
-            <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm">
-              <!-- <span
-                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                        <span aria-hidden
-                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                        <span class="relative">Q 200.00</span>
-                                    </span> -->
-              <p class="text-gray-900 whitespace-no-wrap">
-                Q 200.00
-              </p>
-            </td>
-          </tr>
-
-          <tr>
-            <td
-              class="px-5 py-2 border-b border-gray-200 bg-white text-sm bg-blue-100"
-            >
-              <!-- <p class="text-gray-900 whitespace-no-wrap">Admin</p> -->
-              <div class="green-circle flex justify-center items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  aria-hidden="true"
-                  focusable="false"
-                  width="0.75em"
-                  height="1em"
-                  style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
-                  preserveAspectRatio="xMidYMid meet"
-                  viewBox="0 0 12 16"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M12 11L6 5l-6 6h12z"
-                    fill="#1DA849"
-                  />
-                </svg>
-              </div>
-            </td>
-            <td
-              class="px-5 py-2 border-b border-gray-200 bg-white text-sm bg-blue-100"
-            >
-              <p class="text-gray-900 whitespace-no-wrap">
-                Jan 21, 2020
-              </p>
-            </td>
-            <td
-              class="px-5 py-2 border-b border-gray-200 bg-white text-sm bg-blue-100"
-            >
-              <!-- <span
-                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                        <span aria-hidden
-                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                        <span class="relative">Q 200.00</span>
-                                    </span> -->
-              <p class="text-gray-900 whitespace-no-wrap">
-                Q 200.00
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div
-        class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          "
-      >
-        <span class="text-xs xs:text-sm text-gray-900">
-          Monstrando 1 al 4 de 50 Registros
-        </span>
-        <div class="inline-flex mt-2 xs:mt-0">
-          <button
-            class="text-sm bg-gray-200  hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-l"
-          >
-            Antes
-          </button>
-          <button
-            class="text-sm bg-gray-200  hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-r"
-          >
-            Despues
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <ADDCLIENT></ADDCLIENT>
-
-    
+    <ADDCLIENT :keyclient="key"></ADDCLIENT>
   </section>
 </template>
 
 <style>
 .text-font-card {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   color: #2c3550;
 }
 .card-image {
@@ -378,19 +99,57 @@
   height: 22px;
   background: #f6d1d7;
 }
-.btn-icon-card{
+.btn-icon-card {
   border-radius: 20px;
 }
-.total-debt{
+.total-debt {
   border-radius: 15px;
 }
 </style>
 
 <script>
-import ADDCLIENT from '../components/AddClient';
+import ADDCLIENT from "../components/AddClient";
+import TABLE from '../components/historyClient'
 export default {
-  components:{
-    ADDCLIENT
+  components: {
+    ADDCLIENT,
+    TABLE
+  },
+  data() {
+    return {
+      dataClient:[],  
+      key: "",
+    };
+  },
+  mounted() {
+    this.getSingleData();
+  },
+  methods: {
+    getSingleData() {
+      this.key = this.$route.params.tag;
+
+      let query = this.$fireStore.collection("clients").doc(this.key);
+      let that = this;
+      query.get()
+        .then(function(doc) {
+          if (doc.exists) {
+            that.dataClient.push(doc.data());
+            // console.log("Document data:", doc.data());
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+          }
+        })
+        .catch(function(error) {
+          console.log("Error getting document:", error);
+        });
+    },
+    deleteClient(){
+      console.log(`Deleted client ${this.key}`)
+    },
+    editClient(){
+      console.log(`Edited client ${this.key}`)
+    }
   }
-}
+};
 </script>

@@ -12,17 +12,28 @@ const createStore = () => {
     }),
     mutations: {
       setDataClient(state){
-        this.$fireStore.collection("clients").get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                let client = {
-                  name :doc.data().name,
-                  date : doc.data().date,
-                  gender: doc.data().gender 
-                };
+        // this.$fireStore.collection("clients").get().then((querySnapshot) => {
+        //     querySnapshot.forEach((doc) => {
+        //         let client = {
+        //           name :doc.data().name,
+        //           date : doc.data().date,
+        //           gender: doc.data().gender 
+        //         };
   
-            state.clientList.push(client);
-            });
-        });
+        //     state.clientList.push(client);
+        //     });
+        // });
+          this.$fireStore.collection("clients")
+            .orderBy("id", "desc")
+            .limit(1)
+            .get()
+            .then((querySnapshot) => {
+              querySnapshot.forEach((documentSnapshot) => {
+                // this.limitNumber = documentSnapshot.data().id;
+                console.log(documentSnapshot.data());
+              });
+            }); 
+
     }
     }
   })

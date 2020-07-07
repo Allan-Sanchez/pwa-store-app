@@ -3,8 +3,8 @@
     <div  v-for="(client, index) in dataClientList"
         :key="index">
       <div
-       v-if="index <= 3"
-        @click="showClient(id)"
+      
+        @click="showClient(client.id)"
         class="w-ful sm:h-16 md:h-40 flex justify-center items-center cursor-pointer mb-3"
       >
         <img
@@ -54,7 +54,8 @@ export default {
   // },
   data() {
     return {
-      dataClientList: []
+      dataClientList: [],
+      // searchQuery:''
     };
   },
   mounted() {
@@ -65,6 +66,7 @@ export default {
       this.$fireStore
         .collection("clients")
         .orderBy("date", "desc")
+         .limit(3)
         .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
@@ -79,12 +81,13 @@ export default {
           });
         });
     },
-    showClient() {
-      console.log("show client");
+    showClient(id) {
+      // console.log("show client");
+      // console.log(id)
       this.$router.push({
         name: "ClientPage",
         params: {
-          // tag: this.searchQuery
+          tag: id
         }
       });
     }

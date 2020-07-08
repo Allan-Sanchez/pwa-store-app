@@ -53,10 +53,9 @@
       </div>
     </div>
 
-    <div class="w-3/4 flex justify-center mx-auto text-font-card">
+    <div  class="w-3/4 flex justify-center mx-auto text-font-card">
       <div class="total-debt w-48 mt-5 p-3 border p-1 bg-blue-100 rounded-2">
-        <!-- <p>Total Deuda <span class="font-bold">Q {{ dataClient[0].total }}</span></p> -->
-        <p>Total Deuda <span class="font-bold">Q</span></p>
+        <p>Total Deuda <span class="font-bold">Q {{ dataTotal }}</span></p>
       </div>
     </div>
 
@@ -117,7 +116,8 @@ export default {
   },
   data() {
     return {
-      dataClient:[],  
+      dataClient:[],
+      dataTotal:'',  
       key: "",
     };
   },
@@ -134,7 +134,8 @@ export default {
         .then(function(doc) {
           if (doc.exists) {
             that.dataClient.push(doc.data());
-            // console.log("Document data:", doc.data());
+            that.dataTotal = doc.data().total;
+            // console.log("Document data:", doc.data().total);
           } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");

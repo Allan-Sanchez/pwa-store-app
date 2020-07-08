@@ -129,7 +129,7 @@
           <!--Body-->
           <p>Ingres la cantidad</p>
           <div class="md:w-full">
-            <input
+            <input v-model="quantity"
               class="placeholder-input bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
               id="inline-full-name"
               type="number"
@@ -153,15 +153,18 @@
               class="placeholder-input bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               id="inline-full-name"
               disabled
-              type="text"
-              placeholder="08/06/2020"
+              type="text" :value="date"
             />
           </div>
           <!--Footer-->
           <div class="flex justify-end pt-2 mt-4">
-            <button
-              class="px-4 bg-blue-300 text-white p-3 rounded-lg  hover:bg-gray-100 hover:bg-blue-500 mr-2"
-            >
+            <button v-if="substract" @click="substractDebt()"
+              class="px-4 bg-blue-300 text-white p-3 rounded-lg  hover:bg-gray-100 hover:bg-blue-500 mr-2">
+              Guardar
+            </button>
+
+            <button v-else @click="plusDebt()"
+              class="px-4 bg-blue-300 text-white p-3 rounded-lg  hover:bg-gray-100 hover:bg-blue-500 mr-2">
               Guardar
             </button>
             <button
@@ -187,7 +190,10 @@ export default {
 },
   data () {
     return {
+      debtPlus:0,
+      debtSubstract:1,
       modal: false,
+      date:'',
       substract : true,
       quantity: '',
       description: '',
@@ -204,27 +210,45 @@ export default {
       this.modal = !this.modal;
       this.description = 'Abono';
     },
-   async openModalPlus(){
+    openModalPlus(){
+      let d = new Date();
+      let datestring = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate()  + " " +
+      d.getHours() + ":" + d.getMinutes();
+      this.date = datestring;
+
       this.modal = !this.modal;
       this.description ='';
       this.substract = !this.substract;
-      // console.log(this.keyclient);
+      // console.log(this.keyclient);     
       
-      // const messageRef = this.$fireStore.collection("clients").doc(this.keyclient).collection("history");
-      //   try {
-      //     await messageRef.add({
-      //      fecha:'hoy',
-      //      mensage:'test'
-      //     });
-      //   } catch (e) {
-      //     console.log(e)
-      //     return;
-      //   }
+    },
+    async plusDebt(){
+      if(this.quantity !== ''){ 
+        const messageRef = this.$fireStore.collection("clients").doc(this.keyclient).collection("history");
+        try {
+          await messageRef.add({
+           date:this.date,
+           state:this.debtPlus,
+           quantity:this.quantity,
+           description: this.description
+          });
+        } catch (e) {
+          console.log(e)
+          return;
+        }
+          this.closeModal();
+
+      }
+    },
+    substractDebt(){
+      console.log('subsctract');
     },
     closeModal(){
       this.modal = false;
+      this.quantity = 0;
+      this.description = '';
       this.substract = true;
-    }
+    },
   }
 };
 </script>

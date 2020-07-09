@@ -159,12 +159,12 @@
           <!--Footer-->
           <div class="flex justify-end pt-2 mt-4">
             <button v-if="substract" @click="substractDebt()"
-              class="px-4 bg-blue-300 text-white p-3 rounded-lg  hover:bg-gray-100 hover:bg-blue-500 mr-2">
+              class="px-4 bg-blue-300 text-white p-3 rounded-lg hover:bg-blue-500 mr-2">
               Guardar
             </button>
 
             <button v-else @click="plusDebt()"
-              class="px-4 bg-blue-300 text-white p-3 rounded-lg  hover:bg-gray-100 hover:bg-blue-500 mr-2">
+              class="px-4 bg-blue-300 text-white p-3 rounded-lg  hover:bg-blue-500 mr-2">
               Guardar
             </button>
             <button
@@ -203,7 +203,7 @@ export default {
   },
   mounted() {
     // console.log(keyclient)
-    console.log(this.$props.keyclient);
+    // console.log(this.$props.keyclient);
   },
   methods:{
     openModalSubstract(){

@@ -84,12 +84,14 @@ export default {
     showClient(id) {
       // console.log("show client");
       // console.log(id)
-      this.$router.push({
-        name: "ClientPage",
-        params: {
-          tag: id
-        }
-      });
+      // let test = 123;
+      this.$router.push({ path: `/ClientPage/${id}` })
+      // this.$router.push({
+      //   name: 'ClientPage/:id?',
+      //   params: {
+      //     tag: id
+      //   }
+      // });
     }
   }
 };

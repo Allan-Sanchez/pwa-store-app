@@ -2,8 +2,8 @@
   <section>
     <div v-for="(item, index) in dataClient" :key="index" class="flex items-center flex-col card-image py-4 ">
       <!-- <div > -->
-      <img v-if="item.gender === 'hombre'" src="../assets/img/boy.svg" class="w-24" alt="avatar image" />
-      <img v-else src="../assets/img/girl.svg" class="w-24" alt="avatar image" />
+      <img v-if="item.gender === 'hombre'" src="../../assets/img/boy.svg" class="w-24" alt="avatar image" />
+      <img v-else src="../../assets/img/girl.svg" class="w-24" alt="avatar image" />
       <!-- </div> -->
       <div class="text-center text-font-card text-lg mt-3">
         <p>{{ item.name }}</p>
@@ -60,9 +60,9 @@
     </div>
 
     <!-- table -->
-    <TABLE ></TABLE>
+    <TABLE :keyclient="key"></TABLE>
 
-    <ADDCLIENT :keyclient="key"></ADDCLIENT>
+    <ADDCLIENT :keyclient="key" ></ADDCLIENT>
   </section>
 </template>
 
@@ -107,8 +107,8 @@
 </style>
 
 <script>
-import ADDCLIENT from "../components/AddClient";
-import TABLE from '../components/historyClient'
+import ADDCLIENT from "../../components/AddClient";
+import TABLE from '../../components/historyClient'
 export default {
   components: {
     ADDCLIENT,
@@ -123,10 +123,11 @@ export default {
   },
   mounted() {
     this.getSingleData();
+    // console.log(this.$route.params.id)
   },
   methods: {
     getSingleData() {
-      this.key = this.$route.params.tag;
+      this.key = this.$route.params.id;
 
       let query = this.$fireStore.collection("clients").doc(this.key);
       let that = this;
